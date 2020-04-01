@@ -17,13 +17,14 @@ class NotificationService {
     }    
 
     async saveNotification(notification){
+        
         notificationModel.create({
-            heading: notification.heading,
+            title: notification.title,
             text: notification.text,
             date: notification.date
         });
 
-        
+
     }
 
 }
