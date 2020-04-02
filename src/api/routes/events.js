@@ -1,6 +1,9 @@
 const express = require('express');
 const eventService = require('../../services/event-service');
 
+const isAuth = require('../middleware/isAuth');
+const isExpired = require('../middleware/isExpired');
+
 const route = express.Router();
 
 module.exports = async app => {
@@ -19,6 +22,14 @@ module.exports = async app => {
                 // console.log(err);
                 return res.json("Error").status(500);
             });    
+
+    })
+
+    route.post('/addevent', isAuth, isExpired, (req, res) => {
+
+        console.log(req.token)
+
+        return res.json("Authenticated").status(200);
 
     })
 

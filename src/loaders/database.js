@@ -4,8 +4,11 @@ const eventModel = require('../models/event');
 const adminModel = require('../models/admin');
 const genreModel = require('../models/genre');
 
+const config = require('../config');
+
 const sequelize = new Sequelize(
-    'postgres://postgres:postgres@localhost:5432/MladostWebsite', 
+    // 'postgres://postgres:postgres@localhost:5432/MladostWebsite', 
+    config.databaseURI,
     {
         define: {
             timestamps: false /* Don't include the createdAt and updatedAt columns */
@@ -32,7 +35,11 @@ module.exports = async app => {
     // Init Notification table
     await (async () => {
         adminModel.init({
-            username: DataTypes.STRING,
+            username: {
+                type: DataTypes.STRING,
+                allowNull: false,
+                unique: true
+            },
             password: DataTypes.STRING
         }, { sequelize, modelName: 'admin'});
     })();
