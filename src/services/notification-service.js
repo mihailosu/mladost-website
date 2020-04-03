@@ -16,14 +16,32 @@ class NotificationService {
 
     }    
 
-    async saveNotification(notification){
+    saveNotification(notification){
         
-        notificationModel.create({
-            title: notification.title,
-            text: notification.text,
-            date: notification.date
+        return new Promise((resolve, reject) => {
+
+            notificationModel.create({
+                title: notification.title,
+                text: notification.text,
+                date: notification.date
+            }).then(result => {
+                resolve(result);
+            }).catch(err => {
+                reject(err);
+            });
+
+        });
+    }
+
+    async deleteNotification(notificationId){
+
+        let notif = await notificationModel.findOne({
+            where: {
+                id: notificationId
+            }
         });
 
+        notif.destroy();
 
     }
 

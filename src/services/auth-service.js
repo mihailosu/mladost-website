@@ -37,8 +37,8 @@ class AuthService{
 
     generateToken(userId) {
         let now = new Date();
-        // Token expires in an hour
-        let exp = new Date(now.getTime() + 60 * 1000); 
+        // Token expires in 30 minutes
+        let exp = new Date(now.getTime() + 30 *60 * 1000); 
 
         console.log("Expires at: " + exp);
 

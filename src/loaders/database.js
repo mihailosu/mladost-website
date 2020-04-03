@@ -3,6 +3,7 @@ const notificationModel = require('../models/notification');
 const eventModel = require('../models/event');
 const adminModel = require('../models/admin');
 const genreModel = require('../models/genre');
+const eventGenreModel = require('../models/event-genre');
 
 const config = require('../config');
 
@@ -61,19 +62,25 @@ module.exports = async app => {
         }, { sequelize , modelName: 'genre'});
     })();
 
+    // Init Event-Genre join table
+
+    await (async () => {
+        eventGenreModel.init(null, { sequelize, modelName: "event-genre" })
+    })();
+
     // Define relationships
 
     genreModel.belongsToMany(
         eventModel, 
         { 
-            through: 'event-genres',
+            through: eventGenreModel,
             onDelete: 'cascade' 
         }
     );
     eventModel.belongsToMany(
         genreModel, 
         { 
-            through: 'event-genres',
+            through: eventGenreModel,
             onDelete: 'cascade' 
         }
     );

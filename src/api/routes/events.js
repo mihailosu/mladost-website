@@ -4,6 +4,9 @@ const eventService = require('../../services/event-service');
 const isAuth = require('../middleware/isAuth');
 const isExpired = require('../middleware/isExpired');
 
+const eventModel = require('../../models/event');
+const genreModel = require('../../models/genre');
+
 const route = express.Router();
 
 module.exports = async app => {
@@ -25,12 +28,32 @@ module.exports = async app => {
 
     })
 
-    route.post('/addevent', isAuth, isExpired, (req, res) => {
+    route.post('/add', isAuth, isExpired, (req, res) => {
 
-        console.log(req.token)
+        let evt = req.body;
+        
+        eventService.addEvent(evt)
+            .then(retval => {
+                console.log("OK")
+                return res.json().status(200);
+            })
+            .catch(err => {
+                console.log("Error 2")
+                return res.json().status(500);
+            });
 
-        return res.json("Authenticated").status(200);
 
+    })
+
+    route.delete('/delete/:id', isAuth, isExpired, (req, res) => {
+
+        let eventId = req.params.id;
+
+        (async () => {
+            eventService.deleteEvent(eventId);
+        })();
+
+        return res.json().status(200);
     })
 
 }
