@@ -28,4 +28,9 @@ export default {
   color: rgb(219, 219, 219);
 }
 
+.home > * {
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
 </style>
