@@ -19,16 +19,20 @@ module.exports = async app => {
 
             authToken = await authService.signIn(username, password);
 
+            console.log(authToken)
+
             if (authToken){
+                console.log("True")
                 return res.json({ token: authToken }).status(200);
             }
             else {
-                return res.status(401);
+                console.log("False")
+                return res.status(401).json("Unathorized");
             }
 
         }
         else {
-            return res.status(401);
+            return res.status(401).json("Unathorized");
         }
 
     });
