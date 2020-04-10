@@ -1,18 +1,10 @@
 
 const { Model } = require('sequelize');
 
+/*
+ * TODO: Move the table initialization
+ * function here.
+ */
 class Notification extends Model {}
 
 module.exports = Notification;
-
-// module.exports = async (sequelize) => {
-
-
-//     Notification.init({
-//         heading: DataTypes.STRING,
-//         text: DataTypes.STRING,
-//         date: DataTypes.DATE
-//     }, { sequelize, modelName: 'notification'});
-
-
-// }

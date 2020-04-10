@@ -10,7 +10,7 @@ module.exports = async app => {
 
     route.get('/get', (req, res) => {
 
-        genreService()
+        genreService.getAll()
             .then(dbRes => res.json(dbRes).status(200))
             .catch(err => res.json("Error").status(500));
 
