@@ -12,6 +12,7 @@ All of the models are defined using an **ORM library (sequelize)** and tables cr
 
 ```
 .
+├── .env                                Environment variables
 ├── README.md
 ├── package-lock.json
 ├── package.json
@@ -21,11 +22,11 @@ All of the models are defined using an **ORM library (sequelize)** and tables cr
     │   ├── middleware
     │   │   ├── isAuth.js               Token authentication
     │   │   └── isExpired.js            Token expiration check
-    │   └── routes
-    │       ├── auth.js                 Authentication route
-    │       ├── events.js               Events route
-    │       ├── genres.js               Genres route
-    │       └── notifications.js        Notificaitons route
+    │   └── routes                      Routing
+    │       ├── auth.js                 
+    │       ├── events.js               
+    │       ├── genres.js               
+    │       └── notifications.js        
     ├── config
     │   └── index.js                    Export .env as an object
     ├── index.js
