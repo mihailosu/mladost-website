@@ -45,6 +45,7 @@ class EventService {
                 })();
     
                 resolve(result);
+                
             }).catch(err => {
                 console.log("ERROR")
                 console.log(err)
