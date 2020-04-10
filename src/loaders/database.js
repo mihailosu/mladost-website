@@ -58,7 +58,11 @@ module.exports = async app => {
     // Init Genre table
     await (async () => {
         genreModel.init({
-            name: DataTypes.STRING
+            name: {
+                type: DataTypes.STRING,
+                allowNull: false,
+                unique: true
+            }
         }, { sequelize , modelName: 'genre'});
     })();
 
